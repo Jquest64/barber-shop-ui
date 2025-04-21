@@ -13,21 +13,26 @@ export class ClientsService implements ICLientService {
   private readonly basePath = environment.apiUrl
 
   constructor(private http: HttpClient) { }
-
-
-  save(request: SaveClientRequest): Observable<SaveClientResponse> {
-    return this.http.post<SaveClientResponse>('${this.basePath}clients', request)
-  }
-  update(id: number, request: UpdateClientRequest): Observable<UpdateClientResponse> {
-    return this.http.put<UpdateClientResponse>('${this.basePath}clients/${id}', request)
-  }
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>('${this.basePath}clients/${id}')
-  }
   List(): Observable<ListClientResponse[]> {
-    return this.http.get<ListClientResponse[]>('${this.basePath}clients')
+    throw new Error('Method not implemented.');
   }
   findByID(id: number): Observable<DetailClientResponse> {
-    return this.http.get<DetailClientResponse>('${this.basePath}clients/${id}')
+    throw new Error('Method not implemented.');
+  }
+
+  save(request: SaveClientRequest): Observable<SaveClientResponse> {
+    return this.http.post<SaveClientResponse>(`${this.basePath}clients`, request)
+  }
+  update(id: number, request: UpdateClientRequest): Observable<UpdateClientResponse> {
+    return this.http.put<UpdateClientResponse>(`${this.basePath}clients/${id}`, request)
+  }
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.basePath}clients/${id}`)
+  }
+  list(): Observable<ListClientResponse[]> {
+    return this.http.get<ListClientResponse[]>(`${this.basePath}clients`)
+  }
+  findById(id: number): Observable<DetailClientResponse> {
+    return this.http.get<DetailClientResponse>(`${this.basePath}clients/${id}`)
   }
 }

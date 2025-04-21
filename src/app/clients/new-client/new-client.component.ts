@@ -22,7 +22,7 @@ import { SnackbarManagerService } from '../../services/snackbar-manager.service'
 })
 export class NewClientComponent implements OnDestroy {
 
-  private httpSubscription?: Subscription
+  private httpSubscription?: Subscription;
 
   constructor(
     @Inject(SERVICES_TOKEN.HTTP.CLIENT) private readonly httpService: ICLientService,
@@ -38,6 +38,7 @@ export class NewClientComponent implements OnDestroy {
   }
 
   onSubmitClient(value: ClientModelForm) {
+    console.log(value)
     const { id, ...request } = value
     this.httpSubscription = this.httpService.save(request).subscribe(_ => {
       this.snackbarManager.show('Usuário cadastrado com sucesso!')
