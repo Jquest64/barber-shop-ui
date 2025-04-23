@@ -8,8 +8,8 @@ export interface ICLientService {
 
     delete(id: number): Observable<void>;
 
-    List(): Observable<ListClientResponse[]>
+    list(): Observable<ListClientResponse[]>
 
-    findByID(id: number): Observable<DetailClientResponse>
+    findById(id: number): Observable<DetailClientResponse>
 
 }

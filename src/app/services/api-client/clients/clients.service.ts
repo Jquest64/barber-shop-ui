@@ -13,12 +13,6 @@ export class ClientsService implements ICLientService {
   private readonly basePath = environment.apiUrl
 
   constructor(private http: HttpClient) { }
-  List(): Observable<ListClientResponse[]> {
-    throw new Error('Method not implemented.');
-  }
-  findByID(id: number): Observable<DetailClientResponse> {
-    throw new Error('Method not implemented.');
-  }
 
   save(request: SaveClientRequest): Observable<SaveClientResponse> {
     return this.http.post<SaveClientResponse>(`${this.basePath}clients`, request)
