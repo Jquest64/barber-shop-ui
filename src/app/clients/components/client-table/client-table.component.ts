@@ -1,24 +1,32 @@
 import { AfterViewInit, Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ClientModelTable } from '../../client.models';
 import { Subscription } from 'rxjs';
 import { IDialogManagerService } from '../../../services/idialog-manager.service';
 import { SERVICES_TOKEN } from '../../../services/service.token';
 import { DialogManagerService } from '../../../services/dialog-manager.service';
+import { YesNoDialogComponent } from '../../../commons/components/yes-no-dialog/yes-no-dialog.component';
+import { MatButtonModule } from '@angular/material/button';
+import { CustomPaginator } from './custom-paginator';
 
 @Component({
   selector: 'app-client-table',
   imports: [
     MatTableModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonModule,
+    MatTooltipModule,
   ],
   templateUrl: './client-table.component.html',
   styleUrl: './client-table.component.scss',
-  standalone: true,
-  providers: [{ provide: SERVICES_TOKEN.DIALOG, useClass: DialogManagerService }] 
+  providers: [
+    { provide: SERVICES_TOKEN.DIALOG, useClass: DialogManagerService },
+    { provide: MatPaginatorIntl, useClass: CustomPaginator }
+  ]
 })
 export class ClientTableComponent implements AfterViewInit, OnChanges, OnDestroy {
 
@@ -27,22 +35,22 @@ export class ClientTableComponent implements AfterViewInit, OnChanges, OnDestroy
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = ['name', 'email', 'phone', 'actions'];
   private dialogManagerServiceSubscriptions?: Subscription;
-  @Output() comfirmDelete = new EventEmitter<ClientModelTable>();
-  @Output() requestUpdate = new EventEmitter<ClientModelTable>();
+  @Output() onComfirmDelete = new EventEmitter<ClientModelTable>();
+  @Output() onRequestUpdate = new EventEmitter<ClientModelTable>();
 
   constructor(
-    @Inject('SERVICES_TOKEN.DIALOG') private readonly dialogManagerService: IDialogManagerService
-  ) {}
+    @Inject(SERVICES_TOKEN.DIALOG) private readonly dialogManagerService: IDialogManagerService,
+  ) { }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    
-    if (changes[ 'clients' ] && this.clients) {
+
+    if (changes['clients'] && this.clients) {
       this.dataSource = new MatTableDataSource<ClientModelTable>(this.clients);
-      
+
       if (this.paginator) {
         this.dataSource.paginator = this.paginator;
       }
@@ -58,5 +66,23 @@ export class ClientTableComponent implements AfterViewInit, OnChanges, OnDestroy
 
   formatPhone(phone: string) {
     return `(${phone.substring(0, 2)}) ${phone.substring(2, 7)}-${phone.substring(7)}`;
+  }
+
+  update(client: ClientModelTable) {
+    this.onRequestUpdate.emit(client);
+  }
+
+  delete(client: ClientModelTable) {
+    this.dialogManagerService.showYesNoDialog(
+      YesNoDialogComponent,
+      { title: 'Exclusão de cliente', content: `Confirma a exclusão do cliente ${client.name}` }
+
+    ).subscribe((result) => {
+      if (result) {
+        this.onComfirmDelete.emit(client);
+        const updatedList = this.dataSource.data.filter(c => c.id !== client.id);
+        this.dataSource = new MatTableDataSource<ClientModelTable>(updatedList);
+      }
+    })
   }
 }
