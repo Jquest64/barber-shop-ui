@@ -1,1 +1,5 @@
-<p>schedules-month works!</p>
+<app-schedule-calendar [monthSchedule]="monthSchedule" (onDateChange)="onDateChange($event)" 
+(onComfirmDelete)="onComfirmDelete($event)" (onScheduleClient)="onScheduleClient($event)" [clients]="clients">
+
+
+</app-schedule-calendar>
