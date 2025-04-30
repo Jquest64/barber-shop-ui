@@ -1,7 +1,7 @@
 export interface ScheduleAppointmentMonthModel {
     year: number;
     month: number;
-    scheduleAppointments: ClientScheduleAppointmentModel[];
+    scheduledAppointments: ClientScheduleAppointmentModel[];
 }
 
 export interface ClientScheduleAppointmentModel {
