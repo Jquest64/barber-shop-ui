@@ -4,7 +4,7 @@
 
 ![Painel Administrativo](src/assets/painel-administrativo.png)
 
-Este projeto faz parte de um desafio de projeto da plataforma DIO, focado na criação de um APP Full Stack para o cadastro e agendamento de clientes em barbearias. Ele conta com um frontend intuitivo e um sistema eficiente para gerenciar os atendimentos, garantindo uma experiência fluida tanto para clientes quanto para profissionais. Além disso, possui uma API para o backend, proporcionando uma comunicação estruturada entre as partes do sistema.
+Este projeto faz parte de um desafio de projeto da plataforma **[DIO](https://www.dio.me/)**, focado na criação de um APP Full Stack para o cadastro e agendamento de clientes em barbearias. Ele conta com um frontend intuitivo e um sistema eficiente para gerenciar os atendimentos, garantindo uma experiência fluida tanto para clientes quanto para profissionais. Além disso, possui uma API para o backend, proporcionando uma comunicação estruturada entre as partes do sistema.
 
 ## 🚀 Tecnologias Utilizadas  
 - **Frontend:** Angular
