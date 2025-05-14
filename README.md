@@ -9,7 +9,7 @@ Este projeto faz parte de um desafio de projeto da plataforma DIO, focado na cri
 ## 🚀 Tecnologias Utilizadas  
 - **Frontend:** Angular
 - **Docker:** Para facilitar a implantação 
-- **Backend:** Java (Spring Boot) - **[API](https://github.com/Jquest64/barber-shop-api)** 
+- **Backend:** Java (Spring Boot)
 - **Banco de Dados:** MySQL ou PostgreSQL   
 
 ## 🔥 Principais Funcionalidades  
