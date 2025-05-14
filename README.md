@@ -7,10 +7,10 @@
 Este projeto faz parte de um desafio de projeto da plataforma DIO, focado na criação de um APP Full Stack para o cadastro e agendamento de clientes em barbearias. Ele conta com um frontend intuitivo e um sistema eficiente para gerenciar os atendimentos, garantindo uma experiência fluida tanto para clientes quanto para profissionais. Além disso, possui uma API para o backend, proporcionando uma comunicação estruturada entre as partes do sistema.
 
 ## 🚀 Tecnologias Utilizadas  
-- **Backend:** Java (Spring Boot)  
-- **Frontend:** Angular  
-- **Banco de Dados:** MySQL ou PostgreSQL  
-- **Docker:** Para facilitar a implantação  
+- **Frontend:** Angular
+- **Docker:** Para facilitar a implantação 
+- **Backend:** Java (Spring Boot) - **[API](https://github.com/Jquest64/barber-shop-api)** 
+- **Banco de Dados:** MySQL ou PostgreSQL   
 
 ## 🔥 Principais Funcionalidades  
 - Cadastro de clientes
